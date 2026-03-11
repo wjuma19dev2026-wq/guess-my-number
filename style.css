@@ -1,9 +1,28 @@
 @import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
 
+:root {
+  --green-dark: #28b487;
+  --green-light: #7dd56f;
+  --red: #f63049;
+  --dark: #2c2c2c;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: inherit;
+}
+
+.bg-success {
+  background-color: var(--green-light);
+}
+
+.bg-danger {
+  background-color: var(--red);
+}
+
+.bg-dark {
+  background-color: var(--dark);
 }
 
 html {
