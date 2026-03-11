@@ -1,1 +1,2 @@
-'use strict';
+'use strict'
+document.querySelector('.message')
