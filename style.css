@@ -118,6 +118,10 @@ h1 {
   color: #aa0000;
 }
 
+.text-success {
+  color: rgba(25, 89, 25, 1.5);
+}
+
 .label-score {
   margin-bottom: 2rem;
 }

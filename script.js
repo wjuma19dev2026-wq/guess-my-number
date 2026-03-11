@@ -1,38 +1,48 @@
-document.addEventListener('DOMContentLoaded', function () {
-  let messageBox = document.querySelector('.message')
-  let typedNumber = document.querySelector('.number')
-  let score = document.querySelector('.score')
-  /**
-   * Input para ingresar el valor numerico a validar
-   * @type { HTMLInputElement } inputGuess - Input el cual ingresa el valor del numero a validar
-   */
-  let inputGuess = document.querySelector('.guess')
+let defaultScore = 20
 
-  // VARIABLES
-  let randomNumber = Math.trunc(Math.random() * 20) + 1
-  console.log(randomNumber)
-  // messageBox.innerHTML = `🎉 Corret number`
-  // typedNumber.textContent = 13
-  // score.textContent = '10'
-  // inputGuess.value = 13
-
-  inputGuess.addEventListener('click', getGuessType)
-})
+let messageBox = document.querySelector('.message')
+let scoreBox = document.querySelector('.score')
+let number = document.querySelector('.number')
+let btnCheck = document.querySelector('.btn.check')
 
 /**
- * Obtener el valor del guest mediante el input value
- * @param  { Event } event Event es una interfaz en TypeScript que representa un evento del DOM. Es el tipo que se utiliza para definir el parámetro de los manejadores de eventos en JavaScript y TypeScript.
+ * Input para ingresar el valor numerico a validar
+ * @type { HTMLInputElement } inputGuess - Input el cual ingresa el valor del numero a validar
  */
-function getGuessType(event) {
-  let guess = Number(event.target.value)
-  let message = document.querySelector('.message')
+let inputGuess = document.querySelector('.guess')
+
+// VARIABLES
+let secretNumber = Math.trunc(Math.random() * 20) + 1
+
+// messageBox.innerHTML = `🎉 Corret number`
+number.textContent = secretNumber
+// scoreBox.textContent = '10'
+// inputGuess.value = 13
+scoreBox.textContent = defaultScore
+
+// inputGuess.addEventListener('click', inputGuessProcess)
+
+btnCheck.addEventListener('click', () => {
+  let guess = Number(inputGuess.value)
 
   if (!guess) {
-    message.classList.add('text-danger')
-    message.textContent = ' ⚠ Opss! esto no es un numero'
+    messageBox.textContent = ' ⚠ Opss! esto no es un numero'
     return
+  } else if (guess === secretNumber) {
+    messageBox.textContent = '🎉 Correct Number!'
+  } else if (guess > secretNumber) {
+    if (defaultScore > 1) {
+      messageBox.textContent = '📉 Too high!'
+      defaultScore--
+      scoreBox.textContent = defaultScore
+      return
+    } else {
+      messageBox.textContent = 'You lost the game'
+      scoreBox.textContent = 0
+    }
+  } else if (guess < secretNumber) {
+    messageBox.textContent = '📈 Too low!'
+    defaultScore--
+    scoreBox.textContent = defaultScore
   }
-
-  console.log('Tipo de dato del valor es: ', typeof guess)
-  console.log(guess)
-}
+})
