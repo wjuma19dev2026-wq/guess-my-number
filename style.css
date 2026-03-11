@@ -114,6 +114,10 @@ h1 {
   height: 3rem;
 }
 
+.text-danger {
+  color: #aa0000;
+}
+
 .label-score {
   margin-bottom: 2rem;
 }
